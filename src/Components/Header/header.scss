@@ -1,0 +1,40 @@
+.header{
+    padding: 0px 150px 130px;
+    background-color: black;
+    background-image: url(../../images/big-img.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.header_texts{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: #fff;
+    .header_h6{
+        max-width: 715px;
+        font-size: 65px;
+        font-weight: 700;
+        line-height: 120%;
+    }
+    .header_p{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 160%;
+        max-width: 450px;
+        opacity: 0.6;
+    }
+    .header_btn{
+        padding: 18px 47px;
+        background-color: #c9453b;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        font-family: 'Roboto';
+        font-weight: 400;
+        line-height: 150%;
+        border:none;
+        width: 20%;
+    }
+}
