@@ -1,0 +1,11 @@
+.option_border{
+    border: 2px solid;
+    width: 1000px;
+    height: 130px;
+    text-align: center;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+}
