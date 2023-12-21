@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import Auth from './Auth'
 
-export default class Login extends Component {
+export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Auth/>
+        <h1 className='text-center'>Dashboard</h1>
       </div>
-      
     )
   }
 }
-

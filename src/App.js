@@ -1,47 +1,32 @@
 import React, { Component } from 'react'
-import FirstComponent from './Components/FirstComponent'
-import SecondComponent from './Components/SecondComponent'
-import ThirdComponent from './Components/ThirdComponent'
-import { Route, Routes, Link } from 'react-router-dom'
-import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import Home from './Components/Home'
 import Login from './Components/Login'
+import CarsTable from './Components/CarsTable'
+import OpenCar from './Components/OpenCar'
+import Product from './Components/Product'
+import Cabinet from './Components/Cabinet'
+import Settings from './Components/Settings'
+import Dashboard from './Components/Dashboard'
+import Balance from './Components/Balance'
+import Box from './Components/Box'
 
 export default class App extends Component {
-    state={
-        pages:[
-            {name: 'Option 1', link: '/'},
-            {name: 'Option 2', link: '/second'},
-            {name: 'Option 3', link: '/third'},
-        ]
-    }
   render() {
-    const {pages} = this.state
     return (
       <div>
-
-          <div className='d-flex gap-5'>
-        <ul className='d-flex flex-column gap-2'>
-            {
-                pages.map((item,index)=>{
-                    return <li className='btn btn-info'>
-                    <Link to={item.link} className='link'>{item.name}</Link>
-                    </li>
-                })
-            }
-        </ul>
         <Routes>
-            <Route path='/' element={<FirstComponent/>}/>
-            <Route path='/second' element={<SecondComponent/>}/>
-            <Route path='/third' element={<ThirdComponent/>}/>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/login/cars' element={<CarsTable/>}/>
+            <Route path='/login/cars/opencar:id' element={<OpenCar/>}/>
+            <Route path='/product' element={<Product/>}/>
+            <Route path='/cabinet' element={<Cabinet/>}/>
+            <Route path='/cabinet/settings' element={<Settings/>}/>
+            <Route path='/cabinet/dashboard' element={<Dashboard/>}/>
+            <Route path='/cabinet/dashboard/balance' element={<Balance/>}/>
+            <Route path='/box' element={<Box/>}/>
         </Routes>
-          </div> 
-
-          <Link to='/login' className='btn btn-info'>Log In</Link>
-
-          <Routes>
-          <Route path='/login' element={<Login/>}/>
-          </Routes>
-
 
       </div>    
     )
