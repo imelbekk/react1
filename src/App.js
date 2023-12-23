@@ -1,35 +1,70 @@
-import React, { Component } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Home from './Components/Home'
-import Login from './Components/Login'
-import CarsTable from './Components/CarsTable'
-import OpenCar from './Components/OpenCar'
-import Product from './Components/Product'
-import Cabinet from './Components/Cabinet'
-import Settings from './Components/Settings'
-import Dashboard from './Components/Dashboard'
-import Balance from './Components/Balance'
-import Box from './Components/Box'
+import React from 'react'
+import { useState } from 'react'
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/login/cars' element={<CarsTable/>}/>
-            <Route path='/login/cars/opencar:id' element={<OpenCar/>}/>
-            <Route path='/product' element={<Product/>}/>
-            <Route path='/cabinet' element={<Cabinet/>}/>
-            <Route path='/cabinet/settings' element={<Settings/>}/>
-            <Route path='/cabinet/dashboard' element={<Dashboard/>}/>
-            <Route path='/cabinet/dashboard/balance' element={<Balance/>}/>
-            <Route path='/box' element={<Box/>}/>
-        </Routes>
+export default function App() {
+    const [users, setUsers] = useState([
+        {id: 1, name: 'John', last_name: 'Smith', age: 40, number: 100, city: 'Chicago', state: 'IL', salery: 1000},
+        {id: 2, name: 'Jane', last_name: 'Doe', age: 25, number: 100, city: 'Phoenix', state: 'AZ', salery: 5000},
+        {id: 3, name: 'Mary', last_name: 'Smith', age: 50, number: 200, city: 'Chicago', state: 'IL', salery: 2500},
+        {id: 4, name: 'George', last_name: 'Edwards', age: 45, number: 300, city: 'Phoenix', state: 'AZ', salery: 3000}
+    ])
+    const [text, setText] = useState('')
+    const filter=()=>{
+        const result = users.filter((item)=> item.age <= 40)
+        setUsers(result)
+    }
+    const yes=()=>{
+        let yes = 'Ushbu amalga rozisiz'
+        setText(yes)
+    }
+    const no=()=>{
+        let yes = 'Siz bunga qarshisiz'
+        setText(yes)
+    }
+  return (
+    <div className='container'>
+        <table className='table table-bordered '>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Number</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Salery</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    users.map((item,index)=>{
+                        return <tr>
+                            <td>{index + 1}</td>
+                            <td>{item.name}</td>
+                            <td>{item.last_name}</td>
+                            <td>{item.age}</td>
+                            <td>{item.number}</td>
+                            <td>{item.city}</td>
+                            <td>{item.state}</td>
+                            <td>{item.salery}</td>
+                        </tr>
+                    })
+                }
+            </tbody>
+        </table>
+        <div  className='text-center'>
+        <button className='btn btn-info' onClick={filter}>armiyaga qabul qilish</button>
+        </div>
 
-      </div>    
-    )
-  }
+        <div>
+            <input type="radio" onClick={yes} name='text' id='text1'/>
+            <label for='text1'>yes</label>
+            <input type="radio" onClick={no} name='text' id='text2' />
+            <label for='text2'>no</label>
+            <h1>{text}</h1>
+        </div>
+    </div>
+  )
 }
 
