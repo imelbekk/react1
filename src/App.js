@@ -2,69 +2,76 @@ import React from 'react'
 import { useState } from 'react'
 
 export default function App() {
-    const [users, setUsers] = useState([
-        {id: 1, name: 'John', last_name: 'Smith', age: 40, number: 100, city: 'Chicago', state: 'IL', salery: 1000},
-        {id: 2, name: 'Jane', last_name: 'Doe', age: 25, number: 100, city: 'Phoenix', state: 'AZ', salery: 5000},
-        {id: 3, name: 'Mary', last_name: 'Smith', age: 50, number: 200, city: 'Chicago', state: 'IL', salery: 2500},
-        {id: 4, name: 'George', last_name: 'Edwards', age: 45, number: 300, city: 'Phoenix', state: 'AZ', salery: 3000}
-    ])
-    const [text, setText] = useState('')
-    const filter=()=>{
-        const result = users.filter((item)=> item.age <= 40)
-        setUsers(result)
+  const [users, setUsers] = useState([
+    {id: 1, first_name: 'Elbek', last_name: 'Imomaliyev', phone: 986753235},
+  ])
+  const [first_name, setFirstName] = useState('')
+  const [last_name, setLastName] = useState('')
+  const [phone, setPhone] = useState('')
+  const changeFirstName=(e)=>{
+    setFirstName(e.target.value)
+  }
+  const changeLastName=(e)=>{
+    setLastName(e.target.value)
+  }
+  const changePhone=(e)=>{
+    setPhone(e.target.value)
+  }
+  const addBtn=()=>{
+    let payload = {
+      first_name: first_name,
+      last_name: last_name,
+      phone: phone
     }
-    const yes=()=>{
-        let yes = 'Ushbu amalga rozisiz'
-        setText(yes)
-    }
-    const no=()=>{
-        let yes = 'Siz bunga qarshisiz'
-        setText(yes)
-    }
+    setUsers([...users, payload])
+  }
   return (
     <div className='container'>
-        <table className='table table-bordered '>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Last Name</th>
-                    <th>Age</th>
-                    <th>Number</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Salery</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    users.map((item,index)=>{
-                        return <tr>
-                            <td>{index + 1}</td>
-                            <td>{item.name}</td>
-                            <td>{item.last_name}</td>
-                            <td>{item.age}</td>
-                            <td>{item.number}</td>
-                            <td>{item.city}</td>
-                            <td>{item.state}</td>
-                            <td>{item.salery}</td>
-                        </tr>
-                    })
-                }
-            </tbody>
-        </table>
-        <div  className='text-center'>
-        <button className='btn btn-info' onClick={filter}>armiyaga qabul qilish</button>
-        </div>
+      <table className='table table-bordered table-striped'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Active</th>
+            <th>Count</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            users.map((item,index)=>{
+              return <tr>
+                <td>{index + 1}</td>
+                <td>{item.first_name}</td>
+                <td>{item.last_name}</td>
+                <td>{item.phone}</td>
+                <td>
+                  <input type='checkbox' />
+                </td>
+                <td>
+                  <button>+</button>
+                  <span>0</span>
+                  <button>-</button>
+                </td>
+                <td>action</td>
+              </tr>
+            })
+          }
+        </tbody>
+      </table>
 
-        <div>
-            <input type="radio" onClick={yes} name='text' id='text1'/>
-            <label for='text1'>yes</label>
-            <input type="radio" onClick={no} name='text' id='text2' />
-            <label for='text2'>no</label>
-            <h1>{text}</h1>
-        </div>
+      <div className='d-flex flex-column gap-3 w-75 align-items-center'>
+      <input type="text" placeholder='First Name' className='w-50' onChange={changeFirstName}/>
+      <input type="text" placeholder='Last Name' className='w-50' onChange={changeLastName}/>
+      <input type="text" placeholder='Phone' className='w-50' onChange={changePhone}/>
+      <button className='btn btn-secondary w-50' onClick={addBtn} >add</button>
+      </div>
     </div>
   )
 }
+
+
+
 
