@@ -48,9 +48,9 @@ export default function Pages() {
                             <div className="card-body">
                                 {
                                     item.text.map((event,instend)=>{
-                                        return <div key={index} className='d-flex gap-5 my-3'>
-                                            <h4>{event.name}</h4>
-                                            <div className="d-flex gap-3">
+                                        return <div key={index} className='d-flex gap-3 my-3'>
+                                            <span>{event.name}</span>
+                                            <div className="d-flex gap-1">
                                             <button className='btn btn-info' onClick={editItem}>edit</button>
                                             <button className='btn btn-danger' onClick={()=>deleteItem(instend,index,item)}>delete</button>
                                             </div>
