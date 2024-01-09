@@ -1,12 +1,13 @@
 import React from 'react'
-import AddList from './Components/AddList'
-import Users from './Components/Users'
+import Pages from './Components/Pages'
+
 
 export default function App() {
+
   return (
     <div>
-      <Users/>
-      <AddList/>
+      <Pages/>
     </div>
   )
 }
+
