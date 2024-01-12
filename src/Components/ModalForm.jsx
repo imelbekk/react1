@@ -1,33 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-import Pages from './Pages'
 
-export default function ModalForm({active, toggle, setName, setSelect, save,pages}) {
+export default function ModalForm({active, toggle, handleSubmit, text}) {
   return (
     <>
     <Modal isOpen={active} toggle={toggle}>
-        <ModalHeader>
+        <ModalHeader className='text-center'>
             <h1>Add User</h1>
         </ModalHeader>
 
         <ModalBody>
-            <form>
-                <input type="text" placeholder='title' className='form-control' onChange={(e)=>setName(e.target.value)} />
-                <select className='form-control my-3' onChange={(e)=>setSelect(e.target.value)}>
-                    <option value="Select Page" hidden selected>Select Page</option>
-                    {
-                        pages.map((item,index)=>{
-                            return <option value={item.id} key={index}>
-                                {item.title}
-                            </option>
-                        })
-                    }
+            <form id='form' onSubmit={handleSubmit}>
+                <input type="text" placeholder='title' className='form-control my-2' defaultValue={text?.title}/>
+                <select className='form-control' defaultValue={text?.status}>
+                    <option value="select" hidden>select page</option>
+                    <option value="open">open</option>
+                    <option value="pending">pending</option>
+                    <option value="inproge">inproge</option>
+                    <option value="progress">progress</option>
                 </select>
             </form>
         </ModalBody>
 
         <ModalFooter>
-            <button className='btn btn-info' onClick={save}>save</button>
+            <button className='btn btn-success' form='form' type='submit' >save</button>
         </ModalFooter>
     </Modal>
     </>
