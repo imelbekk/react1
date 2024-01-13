@@ -1,36 +1,15 @@
 import React from 'react'
-import axios from 'axios'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function Albums() {
     const [albums, setAlbums] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const recordPage = 5
-    const lastIndex = currentPage * recordPage
-    const firstIndex = lastIndex - recordPage
-    const records = albums.splice(firstIndex, lastIndex)
-    const npage = Math.ceil(albums.length/ recordPage)
-    const numbers = [...Array(npage + 1).keys()].slice(1)
+    const [page, setPage] = useState(1)
     useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/albums').then(response=>{
+        axios.get(`https://jsonplaceholder.typicode.com/albums?_page=${page}&_limits=5`).then(response=>{
             setAlbums(response.data)
         })
     })
-    const prevPage=()=>{
-        if(currentPage !== firstIndex){
-            setCurrentPage(currentPage - 1)
-        }
-    }
-
-    const changeCPage=(item)=>{
-        setCurrentPage(item)
-    }
-
-    const nextPage=()=>{
-        if(currentPage !== lastIndex){
-            setCurrentPage(currentPage + 1)
-        }
-    }
   return (
     <div className='my-5'>
     <table className='table table-bordered table-striped table-hover'>
@@ -43,7 +22,7 @@ export default function Albums() {
         </thead>
         <tbody>
             {
-                records.map((item,index)=>{
+                albums.map((item,index)=>{
                     return <tr key={index}>
                         <td>{item.userId}</td>
                         <td>{item.id}</td>
@@ -53,23 +32,9 @@ export default function Albums() {
             }
         </tbody>
     </table>
-    <nav>
-            <ul className='pagination'>
-                <li className='page-item'>
-                    <a href='#' className='page-link' onClick={prevPage}>Prev</a>
-                </li>
-                {
-                    numbers.map((item,index)=>{
-                        return <li key={index} className={`page-item ${currentPage === item ? 'active' : ''}`} >
-                            <a href="#" className='page-link' onClick={()=>changeCPage(item) }>{item}</a>
-                        </li>
-                    })
-                }
-                <li className='page-item'>
-                    <a href='#' className='page-link' onClick={nextPage}>Next</a>
-                </li>
-            </ul>
-    </nav>
-</div>
+    <button onClick={()=>setPage(prev => prev - 1)} className='btn btn-info'>prev</button>
+    <span>{page}</span>
+    <button onClick={()=>setPage(prev => prev + 1)} className='btn btn-info'>next</button>
+    </div>
   )
 }
