@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "4e03",
+      "name": "Elbek ",
+      "last_name": "Imomaliyev",
+      "phone": "93-038-97-16"
+    }
+  ],
+  "Users": [
+    {
+      "full_name": "Elbek Imomaliyev",
+      "departament": "IT",
+      "gender": "Male",
+      "birth_data": "21-07-2007"
+    },
+    {
+      "full_name": "Elbek Imomaliyev",
+      "departament": "IT",
+      "gender": "Male",
+      "birth_data": "21-07-2007"
+    }
+  ]
+}

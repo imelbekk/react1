@@ -1,16 +1,12 @@
 import React from 'react'
-import Auth from './Componenets/Auth'
-import Admin from './Componenets/Admin'
-import { Routes, Route } from 'react-router-dom'
+import CRUD from './Crud/CRUD'
+import Users from './Crud/Users'
 
-export default function App() {
-  return (
-    <div>
-
-      <Routes>
-        <Route path='' element={<Auth/>}/>
-        <Route path='/admin' element={<Admin/>}/>
-      </Routes>
-    </div>
-  )
+export default function App(){
+    return (
+        <div className='container'>
+            <CRUD/> <hr/>
+            <Users/>
+        </div>
+    )
 }
